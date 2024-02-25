@@ -1,0 +1,25 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /import/lab/users/mazmishvili/ADS1Class/chisel-empty/01_warm-up/target/scala-2.12/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRolling back changes to class files.[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRestoring class files: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FullAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FourBitAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HalfAdder.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /import/lab/users/mazmishvili/ADS1Class/chisel-empty/01_warm-up/target/scala-2.12/classes.bak[0m
