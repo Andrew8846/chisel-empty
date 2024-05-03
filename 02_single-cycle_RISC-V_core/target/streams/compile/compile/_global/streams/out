@@ -1,0 +1,17 @@
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/src/main/scala/core.scala:153:27: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m required: Int[0m
+[0m[[0m[31merror[0m] [0m[0m    aluResult := Cat(Fill(shiftAmountInt, signBit), shifted1(31-shiftAmountInt, 0))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/src/main/scala/core.scala:153:64: overloaded method value - with alternatives:[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Double)Double <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Float)Float <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Long)Long <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Int)Int <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Char)Int <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Short)Int <and>[0m
+[0m[[0m[31merror[0m] [0m[0m  (x: Byte)Int[0m
+[0m[[0m[31merror[0m] [0m[0m cannot be applied to (chisel3.UInt)[0m
+[0m[[0m[31merror[0m] [0m[0m    aluResult := Cat(Fill(shiftAmountInt, signBit), shifted1(31-shiftAmountInt, 0))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

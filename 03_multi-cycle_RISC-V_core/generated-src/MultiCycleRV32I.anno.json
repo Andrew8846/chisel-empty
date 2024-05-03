@@ -1,0 +1,23 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.annotations.LoadMemoryAnnotation",
+    "target":"MultiCycleRV32I.MultiCycleRV32Icore.IMem",
+    "fileName":"src/test/programs/BinaryFile",
+    "hexOrBinary":"h",
+    "originalMemoryNameOpt":"IMem"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"generated-src"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxInlineAnno",
+    "target":"MultiCycleRV32I.MultiCycleRV32Icore",
+    "name":"MultiCycleRV32I.MultiCycleRV32Icore.IMem.v",
+    "text":"module BindsTo_0_MultiCycleRV32Icore(\n  input         clock,\n  input         reset,\n  output [31:0] io_check_res\n);\n\ninitial begin\n  $readmemh(\"src/test/programs/BinaryFile\", MultiCycleRV32Icore.IMem);\nend\n                      endmodule\n\nbind MultiCycleRV32Icore BindsTo_0_MultiCycleRV32Icore BindsTo_0_MultiCycleRV32Icore_Inst(.*);"
+  }
+]

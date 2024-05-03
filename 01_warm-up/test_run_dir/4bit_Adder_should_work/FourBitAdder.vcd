@@ -1,5 +1,5 @@
 $date
-2024-02-24T20:17+0000
+2024-03-23T12:18+0000
 $end
 $version
 0.2
@@ -9,18 +9,220 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module FourBitAdder $end
- $var wire 1 ! clock $end
- $var wire 1 " reset $end
+ $var wire 2 ! sumResult_hi $end
+ $var wire 1 / full3 $end
+ $var wire 1 7 io_carryOut $end
+ $var wire 4 @ io_b $end
+ $var wire 1 C full2 $end
+ $var wire 1 G clock $end
+ $var wire 2 J sumResult_lo $end
+ $var wire 4 O sumResult $end
+ $var wire 1 Q half1 $end
+ $var wire 4 U io_a $end
+ $var wire 1 W reset $end
+ $var wire 1 X full1 $end
+ $var wire 4 \ io_sum $end
+  $scope module full3.half1 $end
+  $upscope $end
+  $scope module half1 $end
+   $var wire 1 , io_co $end
+   $var wire 1 ; io_b $end
+   $var wire 1 P io_s $end
+   $var wire 1 R io_a $end
+  $upscope $end
+  $scope module full2.half2 $end
+  $upscope $end
+  $scope module full3.half2 $end
+  $upscope $end
+  $scope module full1.half1 $end
+  $upscope $end
+  $scope module full1.half2 $end
+  $upscope $end
+  $scope module full1 $end
+   $var wire 1 $ io_s $end
+   $var wire 1 ) io_a $end
+   $var wire 1 + half2 $end
+   $var wire 1 3 io_ci $end
+   $var wire 1 = io_co $end
+   $var wire 1 ? half1 $end
+   $var wire 1 L io_b $end
+    $scope module half2 $end
+     $var wire 1 . io_co $end
+     $var wire 1 H io_b $end
+     $var wire 1 ] io_a $end
+     $var wire 1 ^ io_s $end
+    $upscope $end
+    $scope module half1 $end
+     $var wire 1 < io_b $end
+     $var wire 1 B io_co $end
+     $var wire 1 S io_s $end
+     $var wire 1 T io_a $end
+    $upscope $end
+  $upscope $end
+  $scope module full2 $end
+   $var wire 1 " io_co $end
+   $var wire 1 ( half1 $end
+   $var wire 1 * io_ci $end
+   $var wire 1 4 io_s $end
+   $var wire 1 6 io_a $end
+   $var wire 1 N half2 $end
+   $var wire 1 Y io_b $end
+    $scope module half2 $end
+     $var wire 1 ' io_co $end
+     $var wire 1 8 io_b $end
+     $var wire 1 D io_a $end
+     $var wire 1 E io_s $end
+    $upscope $end
+    $scope module half1 $end
+     $var wire 1 - io_b $end
+     $var wire 1 1 io_co $end
+     $var wire 1 9 io_s $end
+     $var wire 1 : io_a $end
+    $upscope $end
+  $upscope $end
+  $scope module full3 $end
+   $var wire 1 & io_b $end
+   $var wire 1 > io_s $end
+   $var wire 1 A io_a $end
+   $var wire 1 F half2 $end
+   $var wire 1 I io_co $end
+   $var wire 1 M io_ci $end
+   $var wire 1 [ half1 $end
+    $scope module half1 $end
+     $var wire 1 # io_s $end
+     $var wire 1 % io_a $end
+     $var wire 1 0 io_co $end
+     $var wire 1 K io_b $end
+    $upscope $end
+    $scope module half2 $end
+     $var wire 1 2 io_s $end
+     $var wire 1 5 io_a $end
+     $var wire 1 V io_co $end
+     $var wire 1 Z io_b $end
+    $upscope $end
+  $upscope $end
+  $scope module full2.half1 $end
+  $upscope $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
+0X
+0C
+0;
+0&
+0Z
+0R
+0=
+b0000 U
+b0000 @
+0T
+07
 0"
-0!
+0V
+b0000 O
+0N
+09
+0P
+03
+05
+0-
+b00 !
+0L
+0D
+0/
+b0000 \
+0[
+0F
+01
+0)
+0]
+0H
+0+
+0W
+0B
+0%
+0Y
+0<
+0'
+0S
+0>
+06
+0M
+08
+0#
+0:
+02
+0Q
+0I
+04
+0K
+0.
+0E
+00
+0(
+0G
+0?
+0*
+0^
+0A
+0,
+b00 J
+0$
 $end
 #0
-1"
+1W
 #1
-1!
+1G
 #6
-0!
-0"
+13
+1<
+14
+1R
+b10 J
+05
+0S
+1K
+16
+1L
+17
+1M
+10
+11
+0G
+12
+1*
+0]
+1H
+1^
+1I
+1A
+1,
+1B
+1-
+1%
+0.
+1&
+1Y
+0D
+0'
+1Z
+1E
+1=
+1>
+1)
+b1110 \
+b11 !
+1T
+1"
+b0000 U
+b0000 @
+18
+0#
+0V
+09
+1$
+0W
+b1110 O
+1:
+0P
+1;

@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/01_warm-up/src/main/scala/Adder.scala:28:21: not found: value Uint[0m
-[0m[[0m[31merror[0m] [0m[0m    val co = Output(Uint(1.W))[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/01_warm-up/src/main/scala/MakeVerilog.scala:12:23: imported `BasicAdder` is permanently hidden by definition of class BasicAdder in package scala[0m
+[0m[[0m[31merror[0m] [0m[0mimport src.main.scala.BasicAdder[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

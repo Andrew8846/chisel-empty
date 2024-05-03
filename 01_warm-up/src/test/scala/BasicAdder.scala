@@ -4,11 +4,12 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package basicadder
+package src.test.scala
 
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import src.main.scala.BasicAdder
 
 
 /** 

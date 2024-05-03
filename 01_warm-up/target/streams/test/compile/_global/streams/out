@@ -1,16 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/ADSProject/01_warm-up/src/test/scala/HalfAdderTester.scala:23:18: value a is not a member of chisel3.Bundle[0m
-[0m[[0m[31merror[0m] [0m[0m          dut.io.a.poke(0.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/ADSProject/01_warm-up/src/test/scala/HalfAdderTester.scala:24:18: value b is not a member of chisel3.Bundle[0m
-[0m[[0m[31merror[0m] [0m[0m          dut.io.b.poke(0.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/ADSProject/01_warm-up/src/test/scala/HalfAdderTester.scala:25:18: value ci is not a member of chisel3.Bundle[0m
-[0m[[0m[31merror[0m] [0m[0m          dut.io.ci.poke(1.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/ADSProject/01_warm-up/src/test/scala/HalfAdderTester.scala:26:18: value s is not a member of chisel3.Bundle[0m
-[0m[[0m[31merror[0m] [0m[0m          dut.io.s.expect(1.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/ADSProject/01_warm-up/src/test/scala/HalfAdderTester.scala:27:18: value co is not a member of chisel3.Bundle[0m
-[0m[[0m[31merror[0m] [0m[0m          dut.io.co.expect(0.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m5 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/01_warm-up/src/test/scala/ReadSerialTester.scala:37:35: value cntrl is not a member of chisel3.Bundle{val rdx: chisel3.UInt; val data: chisel3.UInt; val valid: chisel3.UInt}[0m
+[0m[[0m[31merror[0m] [0m[0m        println(s"State: ${dut.io.cntrl.stateReg.asUInt}, Counter: ${dut.counter.counterRegist.asUInt}, Valid: ${dut.io.valid.asUInt}")[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

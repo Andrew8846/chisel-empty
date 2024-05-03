@@ -4,7 +4,7 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package basicadder
+package src.main.scala
 
 import chisel3._
 import chisel3.util._

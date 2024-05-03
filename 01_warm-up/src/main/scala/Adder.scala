@@ -4,7 +4,7 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package adder
+package src.main.scala
 
 import chisel3._
 import chisel3.util._
@@ -23,12 +23,12 @@ class HalfAdder extends Module{
   val io = IO(new Bundle {
     val a  = Input(UInt(1.W))
     val b  = Input(UInt(1.W))
-    val ci  = Input(UInt(1.W))
     val s = Output(UInt(1.W))
     val co = Output(UInt(1.W))
     })
 
-    io.co = (io.a & io.b) | (io.a & io.ci) | (io.b & io.ci) |
+    io.co := io.a & io.b
+    io.s := io.a ^ io.b
 
 }
 
@@ -46,20 +46,24 @@ class HalfAdder extends Module{
 class FullAdder extends Module{
 
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a half adder as presented in the lecture
-     */
+    val a  = Input(UInt(1.W))
+    val b  = Input(UInt(1.W))
+    val ci = Input(UInt(1.W))
+    val s = Output(UInt(1.W))
+    val co = Output(UInt(1.W))
     })
 
 
-  /* 
-   * TODO: Instanciate the two half adders you want to use based on your HalfAdder class
-   */
+  val half1 = Module(new HalfAdder)
+  val half2 = Module(new HalfAdder)
 
+    half1.io.a := io.a
+    half1.io.b := io.b
+    half2.io.a := half1.io.s
+    half2.io.b := io.ci
 
-  /* 
-   * TODO: Describe output behaviour based on the input values and the internal signals
-   */
+    io.s := half2.io.s
+    io.co := half2.io.co | half1.io.co
 
 }
 
@@ -76,17 +80,37 @@ class FullAdder extends Module{
 class FourBitAdder extends Module{
 
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a 4-bit ripple-carry-adder as presented in the lecture
-     */
+    val a = Input(UInt(4.W))
+    val b = Input(UInt(4.W))
+    val sum = Output(UInt(4.W))
+    val carryOut = Output(UInt(1.W))
     })
 
-  /* 
-   * TODO: Instanciate the two half adders you want to use based on your HalfAdder class
-   */
+  val half1 = Module(new HalfAdder)
+  val full1 = Module(new FullAdder)
+  val full2 = Module(new FullAdder)
+  val full3 = Module(new FullAdder)
+
+  half1.io.a := io.a(0)
+  half1.io.b := io.b(0)
+
+  full1.io.a := io.a(1)
+  full1.io.b := io.b(1)
+  full1.io.ci := half1.io.co
+
+  full2.io.a := io.a(2)
+  full2.io.b := io.b(2)
+  full2.io.ci := full1.io.co
+
+  full3.io.a := io.a(3)
+  full3.io.b := io.b(3)
+  full3.io.ci := full2.io.co
 
 
-  /* 
-   * TODO: Describe output behaviour based on the input values and the internal 
-   */
+
+  val sumResult = Cat(full3.io.s, full2.io.s, full1.io.s, half1.io.s)
+
+  io.sum := sumResult
+  io.carryOut := full3.io.co
+
 }

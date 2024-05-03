@@ -1,0 +1,23 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/root-02_single-cycle_risc-v_core_2.12-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/SimpleRV32I$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/SimpleRV32I$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/RV32Icore.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/RV32Icore.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/Verilog_Gen$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/Verilog_Gen$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/Verilog_Gen.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/Verilog_Gen.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/RV32Icore$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/RV32Icore$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/Verilog_Gen$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/Verilog_Gen$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src/main/scala/SimpleRV32I.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /import/lab/users/mazmishvili/ADS1Class/chisel-empty/02_single-cycle_RISC-V_core/target/scala-2.12/classes/src/main/scala/SimpleRV32I.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

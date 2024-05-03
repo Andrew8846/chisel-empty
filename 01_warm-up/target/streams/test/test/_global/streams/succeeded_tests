@@ -1,7 +1,11 @@
 #Successful Tests
-#Sat Feb 24 21:17:38 CET 2024
-adder.FourBitAdderTester=1708805858659
-adder.FullAdderTester=1708805858659
-adder.HalfAdderTester=1708805858659
-basicadder.BasicAdderTester=1708805858737
-readserial.ReadSerialTester=1708805858659
+#Sat Mar 23 13:18:18 CET 2024
+adder.FullAdderTester=1709155294950
+adder.FourBitAdderTester=1709155295077
+adder.HalfAdderTester=1709155294950
+src.test.scala.HalfAdderTester=1711196298063
+src.test.scala.FullAdderTester=1711196298063
+basicadder.BasicAdderTester=1709155294991
+readserial.ReadSerialTester=1709155294950
+src.test.scala.BasicAdderTester=1711196298130
+src.test.scala.FourBitAdderTester=1711196298176

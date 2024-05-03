@@ -1,31 +1,34 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(readserial.ReadSerialTester, org.scalatest.tools.Framework$$anon$1@4e226327, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(adder.FourBitAdderTester, org.scalatest.tools.Framework$$anon$1@4e226327, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(adder.HalfAdderTester, org.scalatest.tools.Framework$$anon$1@4e226327, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(adder.FullAdderTester, org.scalatest.tools.Framework$$anon$1@4e226327, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(basicadder.BasicAdderTester, org.scalatest.tools.Framework$$anon$1@4e226327, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mFourBitAdderTester:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m4-bit Adder[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(src.test.scala.FourBitAdderTester, org.scalatest.tools.Framework$$anon$1@5152dae2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(src.test.scala.BasicAdderTester, org.scalatest.tools.Framework$$anon$1@5152dae2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(src.test.scala.FullAdderTester, org.scalatest.tools.Framework$$anon$1@5152dae2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(src.test.scala.ReadSerialTester, org.scalatest.tools.Framework$$anon$1@5152dae2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(src.test.scala.HalfAdderTester, org.scalatest.tools.Framework$$anon$1@5152dae2, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mFullAdderTester:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mFullAdder[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mFull Adder[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should add inputs correctly[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHalfAdderTester:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHalfAdder[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mReadSerialTester:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mReadSerial[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should work *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  io_valid=0 (0x0) did not equal expected=1 (0x1) (lines in ReadSerialTester.scala: 21) (ReadSerialTester.scala:69)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mBasicAdderTester:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mBasicAdder[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 3 seconds, 933 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mFourBitAdderTester:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m4-bit Adder[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should work[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 3 seconds, 971 milliseconds.[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 5[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 5, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 5, failed 0, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 4, failed 1, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	basicadder.BasicAdderTester[0m
-[0m[[0m[0mdebug[0m] [0m[0m	readserial.ReadSerialTester[0m
-[0m[[0m[0mdebug[0m] [0m[0m	adder.HalfAdderTester[0m
-[0m[[0m[0mdebug[0m] [0m[0m	adder.FullAdderTester[0m
-[0m[[0m[0mdebug[0m] [0m[0m	adder.FourBitAdderTester[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src.test.scala.HalfAdderTester[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src.test.scala.FourBitAdderTester[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src.test.scala.FullAdderTester[0m
+[0m[[0m[0mdebug[0m] [0m[0m	src.test.scala.BasicAdderTester[0m
+[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
+[0m[[0m[31merror[0m] [0m[0m	src.test.scala.ReadSerialTester[0m
+[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

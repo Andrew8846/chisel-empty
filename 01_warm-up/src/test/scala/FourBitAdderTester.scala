@@ -4,11 +4,12 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package adder
+package src.test.scala
 
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import src.main.scala.FourBitAdder
 
 
 /** 
@@ -32,12 +33,22 @@ class FourBitAdderTester extends AnyFlatSpec with ChiselScalatestTester {
   "4-bit Adder" should "work" in {
     test(new FourBitAdder).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
 
-        
-      /*
-       * TODO: Insert your test cases
-       */  
-        
-      
+      for(a1 <- 0 to 15) {
+        for(b1 <- 0 to 15) {
+          val result = a1 + b1
+
+          dut.io.a.poke(a1.U)
+          dut.io.b.poke(b1.U)
+          //dut.io.carryOut
+
+          if(dut.io.carryOut.peek() == 1) {
+           // println(s"Overflow for a=$a1, b=$b1")
+          }
+          else {
+            dut.io.sum.expect(result.U)
+          }
+        }
+      }
     } 
   }
 }

@@ -4,7 +4,7 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package readserial
+package src.main.scala
 
 import chisel3._
 import chisel3.util._
@@ -14,20 +14,56 @@ import chisel3.util._
 class Controller extends Module{
   
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a the component as stated in the documentation
-     */
+    val rdx = Input(UInt(1.W))
+    val cnt_s = Input(UInt(4.W))
+    val cnt_en = Output(Bool())
+    val valid = Output(UInt(1.W))
     })
 
   // internal variables
-  /* 
-   * TODO: Define internal variables (registers and/or wires), if needed
-   */
-
+  val idle :: receiving :: done :: Nil = Enum(3)
+  val stateReg = RegInit(idle)
+  val cnt_en = RegInit(false.B)
+  val valid = RegInit(0.U)
   // state machine
-  /* 
-   * TODO: Describe functionality if the controller as a state machine
-   */
+  // io.valid := 0.U  // problem
+
+
+
+  switch(stateReg) {
+    is(idle) {
+      valid := 0.U
+      when(io.rdx === 0.U) {
+        stateReg := receiving
+        cnt_en := true.B
+      }
+
+    }
+
+    is(receiving) {
+      when(stateReg =/= receiving) {  // Enable counter only on entry into 'receiving'
+        cnt_en := true.B
+      }
+      when(io.cnt_s === 7.U) {
+        stateReg := idle
+        valid := 1.U
+        cnt_en := false.B
+      }
+    }
+
+//    is(done) {
+//      when(io.rdx === 0.U) {
+//        stateReg := receiving
+//        cnt_en := true.B
+//      }.elsewhen(io.rdx === 1.U) {
+//        stateReg := done
+//        cnt_en := false.B
+//      }
+//    }
+  }
+
+  io.cnt_en := cnt_en
+  io.valid := valid
 
 }
 
@@ -36,42 +72,40 @@ class Controller extends Module{
 class Counter extends Module{
   
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a the component as stated in the documentation
-     */
+    val cnt_n = Input(Bool())
+    val cnt_s = Output(UInt(4.W))
     })
 
   // internal variables
-  /* 
-   * TODO: Define internal variables (registers and/or wires), if needed
-   */
+  val counterRegist = RegInit(0.U(4.W))
 
   // state machine
-  /* 
-   * TODO: Describe functionality if the counter as a state machine
-   */
+    when(io.cnt_n) {
+      when(counterRegist < 8.U) {
+        counterRegist := counterRegist + 1.U
+      }.otherwise {
+        counterRegist := 0.U
+      }
+    }
 
-
+  io.cnt_s := counterRegist
 }
 
 /** shift register class */
 class ShiftRegister extends Module{
   
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a the component as stated in the documentation
-     */
+    val rdx = Input(UInt(1.W))
+    val data = Output(UInt(8.W))
     })
 
   // internal variables
-  /* 
-   * TODO: Define internal variables (registers and/or wires), if needed
-   */
+  val dataReg = RegInit(0.U(8.W))
 
   // functionality
-  /* 
-   * TODO: Describe functionality if the shift register
-   */
+    dataReg :=  Cat(dataReg(6, 0), io.rdx)
+
+  io.data := dataReg
 }
 
 /** 
@@ -88,25 +122,25 @@ class ShiftRegister extends Module{
 class ReadSerial extends Module{
   
   val io = IO(new Bundle {
-    /* 
-     * TODO: Define IO ports of a the component as stated in the documentation
-     */
+    val rdx = Input(UInt(1.W))
+    val data = Output(UInt(8.W))
+    val valid = Output (UInt(1.W))
     })
 
 
   // instanciation of modules
-  /* 
-   * TODO: Instanciate the modules that you need
-   */
+  val cntrl = Module(new Controller)
+  val counter = Module(new Counter)
+  val shiftReg = Module(new ShiftRegister)
 
   // connections between modules
-  /* 
-   * TODO: connect the signals between the modules
-   */
+  cntrl.io.rdx := io.rdx
+  cntrl.io.cnt_s := counter.io.cnt_s
+  counter.io.cnt_n := cntrl.io.cnt_en
+  shiftReg.io.rdx := io.rdx
 
-  // global outputs  
-  /* 
-   * TODO: Describe output behaviour based on the input values and the internal signals
-   */
+
+  io.data := shiftReg.io.data
+  io.valid := cntrl.io.valid
 
 }

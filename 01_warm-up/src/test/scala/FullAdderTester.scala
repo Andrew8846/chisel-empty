@@ -4,11 +4,12 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package adder
+package src.test.scala
 
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import src.main.scala.FullAdder
 
 
 /** 
@@ -16,20 +17,43 @@ import org.scalatest.flatspec.AnyFlatSpec
   * Use the truth table from the exercise sheet to test all possible input combinations and the corresponding results exhaustively
   */
 class FullAdderTester extends AnyFlatSpec with ChiselScalatestTester {
+  behavior of "Full Adder"
 
-  "FullAdder" should "work" in {
+  it should "add inputs correctly" in {
     test(new FullAdder).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
 
-          /*dut.io.a.poke(...)
-           *dut.io.b.poke(...)
-           *dut.io.ci.poke(...)
-           *dut.io.s.expect(...)
-           *dut.io.co.expect(...)
-           *...
-           *TODO: Insert your test cases
-           */
 
-        }
-    } 
+      testWithInputs(dut, 0.U, 0.U, 0.U, 0.U, 0.U)
+      testWithInputs(dut, 0.U, 0.U, 1.U, 1.U, 0.U)
+      testWithInputs(dut, 0.U, 1.U, 0.U, 1.U, 0.U)
+      testWithInputs(dut, 0.U, 1.U, 1.U, 0.U, 1.U)
+      testWithInputs(dut, 1.U, 0.U, 0.U, 1.U, 0.U)
+      testWithInputs(dut, 1.U, 0.U, 1.U, 0.U, 1.U)
+      testWithInputs(dut, 1.U, 1.U, 0.U, 0.U, 1.U)
+      testWithInputs(dut, 1.U, 1.U, 1.U, 1.U, 1.U)
+    }
+  }
+
+  def testWithInputs(dut:FullAdder, a: UInt, b: UInt, cin: UInt, s: UInt, cout: UInt): Unit = {
+
+        dut.io.a.poke(a)
+        dut.io.b.poke(b)
+        dut.io.ci.poke(cin)
+        dut.io.s.expect(s)
+        dut.io.co.expect(cout)
+
+  }
+
+//  "FullAdder" should "work" in {
+//    test(new FullAdder).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+//
+//           dut.io.a.poke(0.U)
+//           dut.io.b.poke(0.U)
+//           dut.io.ci.poke(0.U)
+//           dut.io.s.expect(0.U)
+//           dut.io.co.expect(0.U)
+//
+//        }
+//    }
 }
 

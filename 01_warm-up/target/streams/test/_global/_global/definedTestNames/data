@@ -1,1 +1,1 @@
-["basicadder.BasicAdderTester","readserial.ReadSerialTester","adder.HalfAdderTester","adder.FullAdderTester","adder.FourBitAdderTester"]
+["src.test.scala.HalfAdderTester","src.test.scala.FourBitAdderTester","src.test.scala.ReadSerialTester","src.test.scala.FullAdderTester","src.test.scala.BasicAdderTester"]

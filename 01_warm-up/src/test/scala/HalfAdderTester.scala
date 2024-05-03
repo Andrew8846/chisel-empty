@@ -4,11 +4,12 @@
 // Chair of Electronic Design Automation, RPTU in Kaiserslautern
 // File created on 18/10/2022 by Tobias Jauch (@tojauch)
 
-package adder
+package src.test.scala
 
 import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
+import src.main.scala.HalfAdder
 
 
 /** 
@@ -22,9 +23,23 @@ class HalfAdderTester extends AnyFlatSpec with ChiselScalatestTester {
 
           dut.io.a.poke(0.U)
           dut.io.b.poke(0.U)
-          dut.io.ci.poke(1.U)
+          dut.io.s.expect(0.U)
+          dut.io.co.expect(0.U)
+
+          dut.io.a.poke(0.U)
+          dut.io.b.poke(1.U)
           dut.io.s.expect(1.U)
           dut.io.co.expect(0.U)
+
+          dut.io.a.poke(1.U)
+          dut.io.b.poke(0.U)
+          dut.io.s.expect(1.U)
+          dut.io.co.expect(0.U)
+
+          dut.io.a.poke(1.U)
+          dut.io.b.poke(1.U)
+          dut.io.s.expect(0.U)
+          dut.io.co.expect(1.U)
         }
     } 
 }

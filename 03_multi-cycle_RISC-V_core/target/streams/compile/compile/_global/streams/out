@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/03_multi-cycle_RISC-V_core/src/main/scala/core.scala:197:20: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : String("hFFFFFFFF")[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Data[0m
+[0m[[0m[31merror[0m] [0m[0m      aluResult := "hFFFFFFFF" // maybe put here nop (how to implement)[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
