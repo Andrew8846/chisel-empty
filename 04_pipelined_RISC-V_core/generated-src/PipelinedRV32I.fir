@@ -5,39 +5,39 @@ circuit PipelinedRV32I :
     output io : { flip pcIn : UInt<32>, flip instrIn : UInt<32>, pcOut : UInt<32>, instrOut : UInt<32>}
 
     reg pcReg : UInt<32>, clock with :
-      reset => (UInt<1>("h0"), pcReg) @[core.scala 337:18]
+      reset => (UInt<1>("h0"), pcReg) @[core.scala 331:18]
     reg instrReg : UInt<32>, clock with :
-      reset => (UInt<1>("h0"), instrReg) @[core.scala 338:21]
-    pcReg <= io.pcIn @[core.scala 340:9]
-    instrReg <= io.instrIn @[core.scala 341:12]
-    io.pcOut <= pcReg @[core.scala 343:12]
-    io.instrOut <= instrReg @[core.scala 344:15]
+      reset => (UInt<1>("h0"), instrReg) @[core.scala 332:21]
+    pcReg <= io.pcIn @[core.scala 334:9]
+    instrReg <= io.instrIn @[core.scala 335:12]
+    io.pcOut <= pcReg @[core.scala 337:12]
+    io.instrOut <= instrReg @[core.scala 338:15]
 
   module IDBarrier :
     input clock : Clock
     input reset : Reset
-    output io : { flip operandA : UInt<32>, flip operandB : UInt<32>, flip immediate : UInt<12>, flip uop : UInt<8>, flip rd : UInt<5>, operandAOut : UInt<32>, operandBOut : UInt<32>, immediateOut : UInt<12>, uopOut : UInt<8>, rdOut : UInt<5>}
+    output io : { flip immediate : UInt<12>, flip uop : UInt<8>, flip rd : UInt<5>, flip rs1 : UInt<5>, flip rs2 : UInt<5>, immediateOut : UInt<12>, uopOut : UInt<8>, rdOut : UInt<5>, rs1out : UInt<5>, rs2out : UInt<5>}
 
-    reg aReg : UInt<32>, clock with :
-      reset => (UInt<1>("h0"), aReg) @[core.scala 368:17]
-    reg bReg : UInt<32>, clock with :
-      reset => (UInt<1>("h0"), bReg) @[core.scala 369:17]
     reg immReg : UInt<12>, clock with :
-      reset => (UInt<1>("h0"), immReg) @[core.scala 370:19]
+      reset => (UInt<1>("h0"), immReg) @[core.scala 362:19]
     reg opReg : UInt<8>, clock with :
-      reset => (UInt<1>("h0"), opReg) @[core.scala 371:18]
+      reset => (UInt<1>("h0"), opReg) @[core.scala 363:18]
     reg rdReg : UInt<5>, clock with :
-      reset => (UInt<1>("h0"), rdReg) @[core.scala 372:18]
-    aReg <= io.operandA @[core.scala 374:8]
-    bReg <= io.operandB @[core.scala 375:8]
-    immReg <= io.immediate @[core.scala 376:10]
-    opReg <= io.uop @[core.scala 377:9]
-    rdReg <= io.rd @[core.scala 378:9]
-    io.operandAOut <= aReg @[core.scala 380:18]
-    io.operandBOut <= bReg @[core.scala 381:18]
-    io.immediateOut <= immReg @[core.scala 382:19]
-    io.uopOut <= opReg @[core.scala 383:13]
-    io.rdOut <= rdReg @[core.scala 384:12]
+      reset => (UInt<1>("h0"), rdReg) @[core.scala 364:18]
+    reg rs1Reg : UInt<5>, clock with :
+      reset => (UInt<1>("h0"), rs1Reg) @[core.scala 365:19]
+    reg rs2Reg : UInt<5>, clock with :
+      reset => (UInt<1>("h0"), rs2Reg) @[core.scala 366:19]
+    immReg <= io.immediate @[core.scala 368:10]
+    opReg <= io.uop @[core.scala 369:9]
+    rdReg <= io.rd @[core.scala 370:9]
+    rs1Reg <= io.rs1 @[core.scala 371:10]
+    rs2Reg <= io.rs2 @[core.scala 372:10]
+    io.immediateOut <= immReg @[core.scala 374:19]
+    io.uopOut <= opReg @[core.scala 375:13]
+    io.rdOut <= rdReg @[core.scala 376:12]
+    io.rs1out <= rs1Reg @[core.scala 377:13]
+    io.rs2out <= rs2Reg @[core.scala 378:13]
 
   module EXBarrier :
     input clock : Clock
@@ -45,27 +45,41 @@ circuit PipelinedRV32I :
     output io : { flip result : UInt<32>, flip rd : UInt<5>, resOut : UInt<32>, rdOut : UInt<5>}
 
     reg resultReg : UInt<32>, clock with :
-      reset => (UInt<1>("h0"), resultReg) @[core.scala 402:22]
+      reset => (UInt<1>("h0"), resultReg) @[core.scala 396:22]
     reg rdReg : UInt<5>, clock with :
-      reset => (UInt<1>("h0"), rdReg) @[core.scala 403:18]
-    resultReg <= io.result @[core.scala 405:13]
-    rdReg <= io.rd @[core.scala 406:9]
-    io.resOut <= resultReg @[core.scala 408:13]
-    io.rdOut <= rdReg @[core.scala 409:12]
+      reset => (UInt<1>("h0"), rdReg) @[core.scala 397:18]
+    resultReg <= io.result @[core.scala 399:13]
+    rdReg <= io.rd @[core.scala 400:9]
+    io.resOut <= resultReg @[core.scala 402:13]
+    io.rdOut <= rdReg @[core.scala 403:12]
+
+  module MEMBarrier :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip rdIn : UInt<5>, flip resultIn : UInt<32>, rdOut : UInt<5>, resultOut : UInt<32>}
+
+    reg rdreg : UInt<5>, clock with :
+      reset => (UInt<1>("h0"), rdreg) @[core.scala 421:18]
+    reg resReg : UInt<32>, clock with :
+      reset => (UInt<1>("h0"), resReg) @[core.scala 422:19]
+    rdreg <= io.rdIn @[core.scala 424:9]
+    resReg <= io.resultIn @[core.scala 425:10]
+    io.rdOut <= rdreg @[core.scala 427:12]
+    io.resultOut <= resReg @[core.scala 428:16]
 
   module IF :
     input clock : Clock
     input reset : Reset
     output io : { flip pc : UInt<32>, instr : UInt<32>, pcNew : UInt<32>}
 
-    cmem IMem : UInt<32> [4096] @[core.scala 170:17]
-    node _io_instr_T = dshr(io.pc, UInt<2>("h2")) @[core.scala 173:25]
-    node _io_instr_T_1 = bits(_io_instr_T, 11, 0) @[core.scala 173:19]
-    infer mport io_instr_MPORT = IMem[_io_instr_T_1], clock @[core.scala 173:19]
-    io.instr <= io_instr_MPORT @[core.scala 173:12]
-    node _io_pcNew_T = add(io.pc, UInt<3>("h4")) @[core.scala 175:21]
-    node _io_pcNew_T_1 = tail(_io_pcNew_T, 1) @[core.scala 175:21]
-    io.pcNew <= _io_pcNew_T_1 @[core.scala 175:12]
+    cmem IMem : UInt<32> [4096] @[core.scala 173:17]
+    node _io_instr_T = dshr(io.pc, UInt<2>("h2")) @[core.scala 176:25]
+    node _io_instr_T_1 = bits(_io_instr_T, 11, 0) @[core.scala 176:19]
+    infer mport io_instr_MPORT = IMem[_io_instr_T_1], clock @[core.scala 176:19]
+    io.instr <= io_instr_MPORT @[core.scala 176:12]
+    node _io_pcNew_T = add(io.pc, UInt<3>("h4")) @[core.scala 178:21]
+    node _io_pcNew_T_1 = tail(_io_pcNew_T, 1) @[core.scala 178:21]
+    io.pcNew <= _io_pcNew_T_1 @[core.scala 178:12]
 
   module ID :
     input clock : Clock
@@ -167,178 +181,215 @@ circuit PipelinedRV32I :
                           io.uop <= UInt<5>("h10") @[core.scala 226:12]
                         else :
                           io.uop <= UInt<8>("hff") @[core.scala 228:12]
-    io.rs1 <= rs1 @[core.scala 243:10]
-    io.rs2 <= rs2 @[core.scala 244:10]
-    io.immediate <= imm @[core.scala 245:16]
-    io.rd <= rd @[core.scala 246:9]
+    io.rs1 <= rs1 @[core.scala 233:10]
+    io.rs2 <= rs2 @[core.scala 234:10]
+    io.immediate <= imm @[core.scala 235:16]
+    io.rd <= rd @[core.scala 236:9]
 
   module EX :
     input clock : Clock
     input reset : Reset
     output io : { flip uop : UInt<8>, flip operandA : UInt<32>, flip operandB : UInt<32>, flip immediate : UInt<12>, result : UInt<32>}
 
-    node _T = eq(io.uop, UInt<1>("h1")) @[core.scala 263:16]
-    when _T : @[core.scala 263:27]
-      node _io_result_T = add(io.operandA, io.operandB) @[core.scala 264:30]
-      node _io_result_T_1 = tail(_io_result_T, 1) @[core.scala 264:30]
-      io.result <= _io_result_T_1 @[core.scala 264:15]
+    node _T = eq(io.uop, UInt<1>("h1")) @[core.scala 253:16]
+    when _T : @[core.scala 253:27]
+      node _io_result_T = add(io.operandA, io.operandB) @[core.scala 254:30]
+      node _io_result_T_1 = tail(_io_result_T, 1) @[core.scala 254:30]
+      io.result <= _io_result_T_1 @[core.scala 254:15]
     else :
-      node _T_1 = eq(io.uop, UInt<2>("h2")) @[core.scala 265:21]
-      when _T_1 : @[core.scala 265:32]
-        node _io_result_T_2 = sub(io.operandA, io.operandB) @[core.scala 266:30]
-        node _io_result_T_3 = tail(_io_result_T_2, 1) @[core.scala 266:30]
-        io.result <= _io_result_T_3 @[core.scala 266:15]
+      node _T_1 = eq(io.uop, UInt<2>("h2")) @[core.scala 255:21]
+      when _T_1 : @[core.scala 255:32]
+        node _io_result_T_2 = sub(io.operandA, io.operandB) @[core.scala 256:30]
+        node _io_result_T_3 = tail(_io_result_T_2, 1) @[core.scala 256:30]
+        io.result <= _io_result_T_3 @[core.scala 256:15]
       else :
-        node _T_2 = eq(io.uop, UInt<3>("h5")) @[core.scala 267:21]
-        when _T_2 : @[core.scala 267:32]
-          node _io_result_T_4 = and(io.operandA, io.operandB) @[core.scala 268:30]
-          io.result <= _io_result_T_4 @[core.scala 268:15]
+        node _T_2 = eq(io.uop, UInt<3>("h5")) @[core.scala 257:21]
+        when _T_2 : @[core.scala 257:32]
+          node _io_result_T_4 = and(io.operandA, io.operandB) @[core.scala 258:30]
+          io.result <= _io_result_T_4 @[core.scala 258:15]
         else :
-          node _T_3 = eq(io.uop, UInt<3>("h4")) @[core.scala 269:21]
-          when _T_3 : @[core.scala 269:31]
-            node _io_result_T_5 = or(io.operandA, io.operandB) @[core.scala 270:30]
-            io.result <= _io_result_T_5 @[core.scala 270:15]
+          node _T_3 = eq(io.uop, UInt<3>("h4")) @[core.scala 259:21]
+          when _T_3 : @[core.scala 259:31]
+            node _io_result_T_5 = or(io.operandA, io.operandB) @[core.scala 260:30]
+            io.result <= _io_result_T_5 @[core.scala 260:15]
           else :
-            node _T_4 = eq(io.uop, UInt<2>("h3")) @[core.scala 271:21]
-            when _T_4 : @[core.scala 271:32]
-              node _io_result_T_6 = xor(io.operandA, io.operandB) @[core.scala 272:30]
-              io.result <= _io_result_T_6 @[core.scala 272:15]
+            node _T_4 = eq(io.uop, UInt<2>("h3")) @[core.scala 261:21]
+            when _T_4 : @[core.scala 261:32]
+              node _io_result_T_6 = xor(io.operandA, io.operandB) @[core.scala 262:30]
+              io.result <= _io_result_T_6 @[core.scala 262:15]
             else :
-              node _T_5 = eq(io.uop, UInt<3>("h6")) @[core.scala 273:21]
-              when _T_5 : @[core.scala 273:32]
-                node _io_result_T_7 = bits(io.operandB, 4, 0) @[core.scala 274:44]
-                node _io_result_T_8 = dshl(io.operandA, _io_result_T_7) @[core.scala 274:30]
-                io.result <= _io_result_T_8 @[core.scala 274:15]
+              node _T_5 = eq(io.uop, UInt<3>("h6")) @[core.scala 263:21]
+              when _T_5 : @[core.scala 263:32]
+                node _io_result_T_7 = bits(io.operandB, 4, 0) @[core.scala 264:44]
+                node _io_result_T_8 = dshl(io.operandA, _io_result_T_7) @[core.scala 264:30]
+                io.result <= _io_result_T_8 @[core.scala 264:15]
               else :
-                node _T_6 = eq(io.uop, UInt<3>("h7")) @[core.scala 275:21]
-                when _T_6 : @[core.scala 275:32]
-                  node _io_result_T_9 = bits(io.operandB, 4, 0) @[core.scala 276:44]
-                  node _io_result_T_10 = dshr(io.operandA, _io_result_T_9) @[core.scala 276:30]
-                  io.result <= _io_result_T_10 @[core.scala 276:15]
+                node _T_6 = eq(io.uop, UInt<3>("h7")) @[core.scala 265:21]
+                when _T_6 : @[core.scala 265:32]
+                  node _io_result_T_9 = bits(io.operandB, 4, 0) @[core.scala 266:44]
+                  node _io_result_T_10 = dshr(io.operandA, _io_result_T_9) @[core.scala 266:30]
+                  io.result <= _io_result_T_10 @[core.scala 266:15]
                 else :
-                  node _T_7 = eq(io.uop, UInt<4>("h8")) @[core.scala 277:21]
-                  when _T_7 : @[core.scala 277:32]
-                    node _io_result_T_11 = asSInt(io.operandA) @[core.scala 278:31]
-                    node _io_result_T_12 = bits(io.operandB, 4, 0) @[core.scala 278:52]
-                    node _io_result_T_13 = dshr(_io_result_T_11, _io_result_T_12) @[core.scala 278:38]
-                    node _io_result_T_14 = asUInt(_io_result_T_13) @[core.scala 278:60]
-                    io.result <= _io_result_T_14 @[core.scala 278:15]
+                  node _T_7 = eq(io.uop, UInt<4>("h8")) @[core.scala 267:21]
+                  when _T_7 : @[core.scala 267:32]
+                    node _io_result_T_11 = asSInt(io.operandA) @[core.scala 268:31]
+                    node _io_result_T_12 = bits(io.operandB, 4, 0) @[core.scala 268:52]
+                    node _io_result_T_13 = dshr(_io_result_T_11, _io_result_T_12) @[core.scala 268:38]
+                    node _io_result_T_14 = asUInt(_io_result_T_13) @[core.scala 268:60]
+                    io.result <= _io_result_T_14 @[core.scala 268:15]
                   else :
-                    node _T_8 = eq(io.uop, UInt<4>("ha")) @[core.scala 279:21]
-                    when _T_8 : @[core.scala 279:33]
-                      node _io_result_T_15 = lt(io.operandA, io.operandB) @[core.scala 280:35]
-                      node _io_result_T_16 = mux(_io_result_T_15, UInt<1>("h1"), UInt<1>("h0")) @[core.scala 280:22]
-                      io.result <= _io_result_T_16 @[core.scala 280:15]
+                    node _T_8 = eq(io.uop, UInt<4>("ha")) @[core.scala 269:21]
+                    when _T_8 : @[core.scala 269:33]
+                      node _io_result_T_15 = lt(io.operandA, io.operandB) @[core.scala 270:35]
+                      node _io_result_T_16 = mux(_io_result_T_15, UInt<1>("h1"), UInt<1>("h0")) @[core.scala 270:22]
+                      io.result <= _io_result_T_16 @[core.scala 270:15]
                     else :
-                      node _T_9 = eq(io.uop, UInt<2>("h2")) @[core.scala 281:21]
-                      when _T_9 : @[core.scala 281:32]
-                        node _io_result_T_17 = asSInt(io.operandA) @[core.scala 282:35]
-                        node _io_result_T_18 = asSInt(io.operandB) @[core.scala 282:56]
-                        node _io_result_T_19 = lt(_io_result_T_17, _io_result_T_18) @[core.scala 282:42]
-                        node _io_result_T_20 = mux(_io_result_T_19, UInt<1>("h1"), UInt<1>("h0")) @[core.scala 282:22]
-                        io.result <= _io_result_T_20 @[core.scala 282:15]
+                      node _T_9 = eq(io.uop, UInt<2>("h2")) @[core.scala 271:21]
+                      when _T_9 : @[core.scala 271:32]
+                        node _io_result_T_17 = asSInt(io.operandA) @[core.scala 272:35]
+                        node _io_result_T_18 = asSInt(io.operandB) @[core.scala 272:56]
+                        node _io_result_T_19 = lt(_io_result_T_17, _io_result_T_18) @[core.scala 272:42]
+                        node _io_result_T_20 = mux(_io_result_T_19, UInt<1>("h1"), UInt<1>("h0")) @[core.scala 272:22]
+                        io.result <= _io_result_T_20 @[core.scala 272:15]
                       else :
-                        node _T_10 = eq(io.uop, UInt<5>("h10")) @[core.scala 283:21]
-                        when _T_10 : @[core.scala 283:33]
-                          node _io_result_T_21 = add(io.operandA, io.immediate) @[core.scala 284:30]
-                          node _io_result_T_22 = tail(_io_result_T_21, 1) @[core.scala 284:30]
-                          io.result <= _io_result_T_22 @[core.scala 284:15]
+                        node _T_10 = eq(io.uop, UInt<5>("h10")) @[core.scala 273:21]
+                        when _T_10 : @[core.scala 273:33]
+                          node _io_result_T_21 = add(io.operandA, io.immediate) @[core.scala 274:30]
+                          node _io_result_T_22 = tail(_io_result_T_21, 1) @[core.scala 274:30]
+                          io.result <= _io_result_T_22 @[core.scala 274:15]
                         else :
-                          io.result <= UInt<32>("hffffffff") @[core.scala 286:15]
+                          io.result <= UInt<32>("hffffffff") @[core.scala 276:15]
 
   module MEM :
     input clock : Clock
     input reset : Reset
-    output io : { }
+    output io : { flip rd : UInt<5>, flip result : UInt<32>, rdO : UInt<5>, resultO : UInt<32>}
 
-    skip
+    io.rdO <= io.rd @[core.scala 293:10]
+    io.resultO <= io.result @[core.scala 294:14]
 
   module WB :
     input clock : Clock
     input reset : Reset
     output io : { flip rd : UInt<5>, flip result : UInt<32>, wbToRegFile : { writeEn : UInt<1>, rd : UInt<5>, data : UInt<32>}, check_res : UInt<32>}
 
-    io.wbToRegFile.writeEn <= UInt<1>("h1") @[core.scala 317:26]
-    io.wbToRegFile.rd <= io.rd @[core.scala 318:21]
-    io.wbToRegFile.data <= io.result @[core.scala 319:23]
-    io.check_res <= io.result @[core.scala 320:16]
+    io.wbToRegFile.writeEn <= UInt<1>("h1") @[core.scala 311:26]
+    io.wbToRegFile.rd <= io.rd @[core.scala 312:21]
+    io.wbToRegFile.data <= io.result @[core.scala 313:23]
+    io.check_res <= io.result @[core.scala 314:16]
+
+  module ForwardingUnit :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip idRs1 : UInt<5>, flip idRs2 : UInt<5>, flip exRd : UInt<5>, flip wbRd : UInt<5>, flip wbWriteEn : UInt<1>, forward : UInt<1>}
+
+    node _hazard_T = neq(io.exRd, UInt<1>("h0")) @[core.scala 155:26]
+    node _hazard_T_1 = eq(io.exRd, io.idRs1) @[core.scala 155:47]
+    node _hazard_T_2 = eq(io.exRd, io.idRs2) @[core.scala 155:71]
+    node _hazard_T_3 = or(_hazard_T_1, _hazard_T_2) @[core.scala 155:60]
+    node _hazard_T_4 = and(_hazard_T, _hazard_T_3) @[core.scala 155:35]
+    node _hazard_T_5 = neq(io.wbRd, UInt<1>("h0")) @[core.scala 156:31]
+    node _hazard_T_6 = and(io.wbWriteEn, _hazard_T_5) @[core.scala 156:19]
+    node _hazard_T_7 = eq(io.wbRd, io.idRs1) @[core.scala 156:52]
+    node _hazard_T_8 = eq(io.wbRd, io.idRs2) @[core.scala 156:76]
+    node _hazard_T_9 = or(_hazard_T_7, _hazard_T_8) @[core.scala 156:65]
+    node _hazard_T_10 = and(_hazard_T_6, _hazard_T_9) @[core.scala 156:40]
+    node hazard = or(_hazard_T_4, _hazard_T_10) @[core.scala 155:86]
+    io.forward <= hazard @[core.scala 158:14]
 
   module regFile :
     input clock : Clock
     input reset : Reset
     output io : { flip req1 : { rs : UInt<5>}, flip req2 : { rs : UInt<5>}, resp1 : { data : UInt<32>}, resp2 : { data : UInt<32>}, flip write : { writeEn : UInt<1>, rd : UInt<5>, data : UInt<32>}}
 
-    cmem regFile : UInt<32> [32] @[core.scala 146:20]
-    infer mport MPORT = regFile[UInt<1>("h0")], clock @[core.scala 147:10]
-    MPORT <= UInt<1>("h0") @[core.scala 147:14]
-    infer mport io_resp1_data_MPORT = regFile[io.req1.rs], clock @[core.scala 150:27]
-    io.resp1.data <= io_resp1_data_MPORT @[core.scala 150:17]
-    infer mport io_resp2_data_MPORT = regFile[io.req2.rs], clock @[core.scala 151:27]
-    io.resp2.data <= io_resp2_data_MPORT @[core.scala 151:17]
-    when io.write.writeEn : @[core.scala 153:26]
-      infer mport MPORT_1 = regFile[io.write.rd], clock @[core.scala 154:12]
-      MPORT_1 <= io.write.data @[core.scala 154:26]
+    cmem regFile : UInt<32> [32] @[core.scala 127:20]
+    infer mport MPORT = regFile[UInt<1>("h0")], clock @[core.scala 128:10]
+    MPORT <= UInt<1>("h0") @[core.scala 128:14]
+    infer mport io_resp1_data_MPORT = regFile[io.req1.rs], clock @[core.scala 129:27]
+    io.resp1.data <= io_resp1_data_MPORT @[core.scala 129:17]
+    infer mport io_resp2_data_MPORT = regFile[io.req2.rs], clock @[core.scala 130:27]
+    io.resp2.data <= io_resp2_data_MPORT @[core.scala 130:17]
+    when io.write.writeEn : @[core.scala 132:26]
+      infer mport MPORT_1 = regFile[io.write.rd], clock @[core.scala 133:12]
+      MPORT_1 <= io.write.data @[core.scala 133:26]
 
   module PipelinedRV32Icore :
     input clock : Clock
     input reset : Reset
     output io : { check_res : UInt<32>}
 
-    inst ifBarrier of IFBarrier @[core.scala 456:25]
+    inst ifBarrier of IFBarrier @[core.scala 464:25]
     ifBarrier.clock <= clock
     ifBarrier.reset <= reset
-    inst idBarrier of IDBarrier @[core.scala 457:25]
+    inst idBarrier of IDBarrier @[core.scala 465:25]
     idBarrier.clock <= clock
     idBarrier.reset <= reset
-    inst exBarrier of EXBarrier @[core.scala 458:25]
+    inst exBarrier of EXBarrier @[core.scala 466:25]
     exBarrier.clock <= clock
     exBarrier.reset <= reset
-    inst IF of IF @[core.scala 461:18]
+    inst memBarrier of MEMBarrier @[core.scala 467:26]
+    memBarrier.clock <= clock
+    memBarrier.reset <= reset
+    inst IF of IF @[core.scala 471:18]
     IF.clock <= clock
     IF.reset <= reset
-    inst ID of ID @[core.scala 462:18]
+    inst ID of ID @[core.scala 472:18]
     ID.clock <= clock
     ID.reset <= reset
-    inst EX of EX @[core.scala 463:18]
+    inst EX of EX @[core.scala 473:18]
     EX.clock <= clock
     EX.reset <= reset
-    inst MEM of MEM @[core.scala 464:19]
+    inst MEM of MEM @[core.scala 474:19]
     MEM.clock <= clock
     MEM.reset <= reset
-    inst WB of WB @[core.scala 465:18]
+    inst WB of WB @[core.scala 475:18]
     WB.clock <= clock
     WB.reset <= reset
-    inst regFile of regFile @[core.scala 468:23]
+    inst fwUnit of ForwardingUnit @[core.scala 477:22]
+    fwUnit.clock <= clock
+    fwUnit.reset <= reset
+    inst regFile of regFile @[core.scala 480:23]
     regFile.clock <= clock
     regFile.reset <= reset
-    regFile.io.write.writeEn <= UInt<1>("h0") @[core.scala 469:28]
-    io.check_res <= UInt<1>("h0") @[core.scala 471:16]
+    regFile.io.write.writeEn <= UInt<1>("h0") @[core.scala 481:28]
+    io.check_res <= UInt<1>("h0") @[core.scala 483:16]
     reg pc : UInt<32>, clock with :
-      reset => (reset, UInt<32>("h0")) @[core.scala 472:19]
-    IF.io.pc <= pc @[core.scala 475:12]
-    pc <= IF.io.pcNew @[core.scala 476:6]
-    ifBarrier.io.pcIn <= IF.io.pcNew @[core.scala 477:21]
-    ifBarrier.io.instrIn <= IF.io.instr @[core.scala 478:24]
-    ID.io.instr <= ifBarrier.io.instrOut @[core.scala 481:15]
-    regFile.io.req1.rs <= ID.io.rs1 @[core.scala 484:22]
-    regFile.io.req2.rs <= ID.io.rs2 @[core.scala 485:22]
-    idBarrier.io.operandA <= regFile.io.resp1.data @[core.scala 486:25]
-    idBarrier.io.operandB <= regFile.io.resp2.data @[core.scala 487:25]
-    idBarrier.io.immediate <= ID.io.immediate @[core.scala 488:26]
-    idBarrier.io.rd <= ID.io.rd @[core.scala 489:19]
-    idBarrier.io.uop <= ID.io.uop @[core.scala 490:20]
-    EX.io.uop <= idBarrier.io.uopOut @[core.scala 493:13]
-    EX.io.operandA <= idBarrier.io.operandAOut @[core.scala 494:18]
-    EX.io.operandB <= idBarrier.io.operandBOut @[core.scala 495:18]
-    EX.io.immediate <= idBarrier.io.immediateOut @[core.scala 496:19]
-    exBarrier.io.rd <= idBarrier.io.rdOut @[core.scala 497:19]
-    exBarrier.io.result <= EX.io.result @[core.scala 498:23]
-    WB.io.result <= exBarrier.io.resOut @[core.scala 502:16]
-    WB.io.rd <= exBarrier.io.rdOut @[core.scala 503:12]
-    io.check_res <= WB.io.check_res @[core.scala 504:16]
-    regFile.io.write.data <= WB.io.wbToRegFile.data @[core.scala 505:20]
-    regFile.io.write.rd <= WB.io.wbToRegFile.rd @[core.scala 505:20]
-    regFile.io.write.writeEn <= WB.io.wbToRegFile.writeEn @[core.scala 505:20]
+      reset => (reset, UInt<32>("h0")) @[core.scala 484:19]
+    IF.io.pc <= pc @[core.scala 487:12]
+    pc <= IF.io.pcNew @[core.scala 488:6]
+    ifBarrier.io.pcIn <= IF.io.pcNew @[core.scala 489:21]
+    ifBarrier.io.instrIn <= IF.io.instr @[core.scala 490:24]
+    ID.io.instr <= ifBarrier.io.instrOut @[core.scala 493:15]
+    idBarrier.io.rs1 <= ID.io.rs1 @[core.scala 496:20]
+    idBarrier.io.rs2 <= ID.io.rs2 @[core.scala 497:20]
+    idBarrier.io.immediate <= ID.io.immediate @[core.scala 499:26]
+    idBarrier.io.rd <= ID.io.rd @[core.scala 500:19]
+    idBarrier.io.uop <= ID.io.uop @[core.scala 501:20]
+    regFile.io.req1.rs <= idBarrier.io.rs1out @[core.scala 504:22]
+    regFile.io.req2.rs <= idBarrier.io.rs2out @[core.scala 505:22]
+    fwUnit.io.idRs1 <= idBarrier.io.rs1out @[core.scala 507:23]
+    fwUnit.io.idRs2 <= idBarrier.io.rs2out @[core.scala 508:23]
+    fwUnit.io.exRd <= exBarrier.io.rdOut @[core.scala 509:23]
+    fwUnit.io.wbRd <= WB.io.rd @[core.scala 510:23]
+    fwUnit.io.wbWriteEn <= WB.io.wbToRegFile.writeEn @[core.scala 511:23]
+    node forwardA = mux(fwUnit.io.forward, exBarrier.io.resOut, regFile.io.resp1.data) @[core.scala 514:21]
+    node forwardB = mux(fwUnit.io.forward, exBarrier.io.resOut, regFile.io.resp2.data) @[core.scala 515:21]
+    EX.io.uop <= idBarrier.io.uopOut @[core.scala 517:13]
+    EX.io.operandA <= forwardA @[core.scala 518:18]
+    EX.io.operandB <= forwardB @[core.scala 519:18]
+    EX.io.immediate <= idBarrier.io.immediateOut @[core.scala 520:19]
+    exBarrier.io.rd <= idBarrier.io.rdOut @[core.scala 521:19]
+    exBarrier.io.result <= EX.io.result @[core.scala 522:23]
+    MEM.io.rd <= exBarrier.io.rdOut @[core.scala 525:13]
+    MEM.io.result <= exBarrier.io.resOut @[core.scala 526:17]
+    memBarrier.io.resultIn <= MEM.io.resultO @[core.scala 527:26]
+    memBarrier.io.rdIn <= MEM.io.rdO @[core.scala 528:22]
+    WB.io.result <= memBarrier.io.resultOut @[core.scala 532:16]
+    WB.io.rd <= memBarrier.io.rdOut @[core.scala 533:12]
+    regFile.io.write.data <= WB.io.wbToRegFile.data @[core.scala 535:20]
+    regFile.io.write.rd <= WB.io.wbToRegFile.rd @[core.scala 535:20]
+    regFile.io.write.writeEn <= WB.io.wbToRegFile.writeEn @[core.scala 535:20]
+    io.check_res <= WB.io.check_res @[core.scala 536:16]
 
   module PipelinedRV32I :
     input clock : Clock

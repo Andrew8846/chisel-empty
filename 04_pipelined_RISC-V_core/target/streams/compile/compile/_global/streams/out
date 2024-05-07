@@ -1,25 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:380:3: not found: value aReg[0m
-[0m[[0m[31merror[0m] [0m[0m  aReg := io.operandA[0m
-[0m[[0m[31merror[0m] [0m[0m  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:380:14: value operandA is not a member of chisel3.Bundle{val immediate: chisel3.UInt; val uop: core_tile.uopc.Type; val rd: chisel3.UInt; val rs1: chisel3.UInt; val rs2: chisel3.UInt; val immediateOut: chisel3.UInt; val uopOut: core_tile.uopc.Type; val rdOut: chisel3.UInt; val rs1out: chisel3.UInt; val rs2out: chisel3.UInt}[0m
-[0m[[0m[31merror[0m] [0m[0m  aReg := io.operandA[0m
-[0m[[0m[31merror[0m] [0m[0m             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:381:3: not found: value bReg[0m
-[0m[[0m[31merror[0m] [0m[0m  bReg := io.operandB[0m
-[0m[[0m[31merror[0m] [0m[0m  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:381:14: value operandB is not a member of chisel3.Bundle{val immediate: chisel3.UInt; val uop: core_tile.uopc.Type; val rd: chisel3.UInt; val rs1: chisel3.UInt; val rs2: chisel3.UInt; val immediateOut: chisel3.UInt; val uopOut: core_tile.uopc.Type; val rdOut: chisel3.UInt; val rs1out: chisel3.UInt; val rs2out: chisel3.UInt}[0m
-[0m[[0m[31merror[0m] [0m[0m  bReg := io.operandB[0m
-[0m[[0m[31merror[0m] [0m[0m             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:388:6: value operandAOut is not a member of chisel3.Bundle{val immediate: chisel3.UInt; val uop: core_tile.uopc.Type; val rd: chisel3.UInt; val rs1: chisel3.UInt; val rs2: chisel3.UInt; val immediateOut: chisel3.UInt; val uopOut: core_tile.uopc.Type; val rdOut: chisel3.UInt; val rs1out: chisel3.UInt; val rs2out: chisel3.UInt}[0m
-[0m[[0m[31merror[0m] [0m[0m  io.operandAOut := aReg[0m
-[0m[[0m[31merror[0m] [0m[0m     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:388:21: not found: value aReg[0m
-[0m[[0m[31merror[0m] [0m[0m  io.operandAOut := aReg[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:389:6: value operandBOut is not a member of chisel3.Bundle{val immediate: chisel3.UInt; val uop: core_tile.uopc.Type; val rd: chisel3.UInt; val rs1: chisel3.UInt; val rs2: chisel3.UInt; val immediateOut: chisel3.UInt; val uopOut: core_tile.uopc.Type; val rdOut: chisel3.UInt; val rs1out: chisel3.UInt; val rs2out: chisel3.UInt}[0m
-[0m[[0m[31merror[0m] [0m[0m  io.operandBOut := bReg[0m
-[0m[[0m[31merror[0m] [0m[0m     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:389:21: not found: value bReg[0m
-[0m[[0m[31merror[0m] [0m[0m  io.operandBOut := bReg[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m8 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:542:28: value resOut is not a member of chisel3.Bundle{val rdIn: chisel3.UInt; val resultIn: chisel3.UInt; val rdOut: chisel3.UInt; val resultOut: chisel3.UInt}[0m
+[0m[[0m[31merror[0m] [0m[0m      2.U -> memBarrier.io.resOut, // Forward from EXMEM[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/import/lab/users/mazmishvili/ADS1Class/chisel-empty/04_pipelined_RISC-V_core/src/main/scala/core.scala:549:26: value resOut is not a member of chisel3.Bundle{val rdIn: chisel3.UInt; val resultIn: chisel3.UInt; val rdOut: chisel3.UInt; val resultOut: chisel3.UInt}[0m
+[0m[[0m[31merror[0m] [0m[0m    2.U -> memBarrier.io.resOut, // Forward from EXMEM[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

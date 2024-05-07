@@ -210,7 +210,7 @@ class ID extends Module {
   io.rs2 := rs2
   io.immediate := imm
   io.rd := rd
-  
+
 }
 
 // -----------------------------------------
@@ -499,4 +499,3 @@ class PipelinedRV32Icore (BinaryFile: String) extends Module {
   io.check_res := WB.io.check_res
 
 }
-
