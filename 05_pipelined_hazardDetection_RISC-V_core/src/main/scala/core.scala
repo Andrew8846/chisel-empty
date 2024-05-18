@@ -173,9 +173,6 @@ class ForwardingUnit extends Module {
     exHazardB -> 1.U
   ))
 
-
-  //  io.forwardA := exHazardA || wbHazardA
-  //  io.forwardB := exHazardB || wbHazardB
 }
 
 
@@ -532,8 +529,6 @@ class PipelinedRV32Icore (BinaryFile: String) extends Module {
   fwUnit.io.exmemRd   := memBarrier.io.rdOut
 
   // forwarding
-  //  val forwardA = Mux(fwUnit.io.forwardA, exBarrier.io.resOut, regFile.io.resp1.data)
-  //  val forwardB = Mux(fwUnit.io.forwardB, exBarrier.io.resOut, regFile.io.resp2.data)
   val forwardA = MuxLookup(fwUnit.io.forwardA, regFile.io.resp1.data, Seq(
     0.U -> regFile.io.resp1.data, // No forwarding
     1.U -> exBarrier.io.resOut,    // Forward from EX
